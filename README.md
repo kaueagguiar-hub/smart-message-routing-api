@@ -7,7 +7,7 @@ API REST desenvolvida para classificação automática de mensagens e execução
 ## 🚀 Demonstração
 
 🔗 API Online:
-https://ai-automation-agent-pdze.onrender.com
+https://ai-automation-agent.onrender.com
 
 🔗 Documentação Swagger:
 https://ai-automation-agent.onrender.com/apidocs/
