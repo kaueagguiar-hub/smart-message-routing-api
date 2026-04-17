@@ -7,6 +7,12 @@ import logging
 import os
 
 app = Flask(__name__)
+
+app.config['SWAGGER'] = {
+    'title': 'AI Automation Agent API',
+    'uiversion': 3
+}
+
 swagger = Swagger(app)
 
 # --- Logging estruturado ---
