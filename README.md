@@ -1,63 +1,115 @@
-# 🤖 AI Automation Agent API
+# AI Automation Agent API
 
-API REST desenvolvida para classificação automática de mensagens e execução de ações inteligentes, simulando um agente de atendimento com base em Inteligência Artificial.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Flask](https://img.shields.io/badge/Flask-REST_API-black)
+![Swagger](https://img.shields.io/badge/Docs-Swagger-green)
+![Deploy](https://img.shields.io/badge/Deploy-Render-purple)
+
+REST API desenvolvida para classificação inteligente de mensagens, roteamento automatizado de ações e monitoramento de estatísticas operacionais.
+
+Este projeto simula um fluxo real de automação de atendimento, aplicando conceitos de backend, integração de serviços e documentação de APIs.
 
 ---
 
-## 🚀 Demonstração
+## Live Application
 
-🔗 API Online:
+**API Base URL**
 https://ai-automation-agent.onrender.com
 
-🔗 Documentação Swagger:
+**Swagger Documentation**
 https://ai-automation-agent.onrender.com/apidocs/
 
 ---
 
-## 🎯 Objetivo do Projeto
+## Overview
 
-Criar um agente inteligente capaz de:
+A API recebe mensagens, realiza uma classificação automática por categoria e executa uma ação correspondente.
 
-* Classificar mensagens automaticamente (vendas, suporte ou geral)
-* Executar ações com base na classificação
-* Registrar logs das interações
-* Gerar estatísticas de uso
+Categorias atualmente suportadas:
 
-Esse projeto simula um sistema real de automação utilizado em empresas para atendimento e triagem de leads.
+* **sales** → direcionamento comercial
+* **support** → direcionamento para suporte
+* **general** → tratamento genérico
 
----
-
-## 🧠 Tecnologias Utilizadas
-
-* Python
-* Flask
-* Flasgger (Swagger)
-* Gunicorn
-* JSON (armazenamento de dados)
+Além disso, a aplicação registra logs das interações e gera estatísticas operacionais para análise.
 
 ---
 
-## ⚙️ Funcionalidades
+## Architecture
 
-Client → Flask API → Classification Service → Action Service → Logs
+```text id="c1m4qx"
+Client Request
+     ↓
+Flask API
+     ↓
+Classification Service
+     ↓
+Action Service
+     ↓
+Logs + Statistics
+```
 
-### 📌 Classificação de mensagens
+---
 
-**POST /classify**
+## Core Features
 
-Classifica a mensagem e executa uma ação.
+### Intelligent Message Classification
 
-#### Exemplo de requisição:
+Classificação automática das mensagens recebidas com base no conteúdo.
 
-```json
+### Automated Action Routing
+
+Executa ações específicas conforme a classificação retornada.
+
+### Operational Logging
+
+Armazena logs estruturados das interações para rastreabilidade.
+
+### Metrics Endpoint
+
+Disponibiliza estatísticas agregadas por categoria.
+
+### Interactive API Documentation
+
+Documentação automática com Swagger UI.
+
+---
+
+## API Endpoints
+
+### Health Check
+
+```http id="q1m7rw"
+GET /health
+```
+
+**Response**
+
+```json id="n9m2qz"
 {
-  "message": "Quero comprar seu produto"
+  "status": "ok"
 }
 ```
 
-#### Exemplo de resposta:
+---
 
-```json
+### Message Classification
+
+```http id="t5m3qw"
+POST /classify
+```
+
+**Request**
+
+```json id="u2n6qx"
+{
+  "message": "I want to buy your product"
+}
+```
+
+**Response**
+
+```json id="v8m1qz"
 {
   "classification": "sales",
   "action": "Encaminhado para equipe comercial"
@@ -66,23 +118,25 @@ Classifica a mensagem e executa uma ação.
 
 ---
 
-### 📌 Listagem de logs
+### Logs Retrieval
 
-**GET /logs**
-
-Retorna todas as interações registradas.
+```http id="r4m8qw"
+GET /logs
+```
 
 ---
 
-### 📌 Estatísticas
+### Statistics
 
-**GET /stats**
+```http id="k7n2qx"
+GET /stats
+```
 
-Retorna a contagem de mensagens por tipo:
+**Response**
 
-```json
+```json id="p3m5qw"
 {
-  "sales": 10,
+  "sales": 12,
   "support": 5,
   "general": 3
 }
@@ -90,23 +144,9 @@ Retorna a contagem de mensagens por tipo:
 
 ---
 
-### 📌 Health Check
+## Project Structure
 
-**GET /health**
-
-Verifica se a API está online:
-
-```json
-{
-  "status": "ok"
-}
-```
-
----
-
-## 🗂️ Estrutura do Projeto
-
-```
+```bash id="j6m1qz"
 ai-automation-agent/
 │
 ├── app.py
@@ -120,51 +160,76 @@ ai-automation-agent/
 
 ---
 
-## ☁️ Deploy
+## Technology Stack
 
-Projeto publicado em ambiente cloud utilizando:
-
-* Render (deploy)
-* GitHub (versionamento)
----
-
-## Desafios técnicos  
-
-- Input validation
-- Structured logging
-- Cloud deployment
-- API documentation
----
-
-## 📈 Possíveis melhorias
-
-* Integração com API de IA (OpenAI, etc)
-* Banco de dados (PostgreSQL)
-* Autenticação de usuários
-* Dashboard frontend
-* Integração com WhatsApp / CRM
+* **Python**
+* **Flask**
+* **Flasgger / Swagger**
+* **Gunicorn**
+* **Render**
+* **GitHub**
 
 ---
 
-## 💼 Valor para o negócio
+## Engineering Practices Applied
 
-Esse tipo de solução pode ser utilizado para:
-
-* Automação de atendimento
-* Triagem de leads
-* Redução de custo operacional
-* Aumento de produtividade
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido por Kauê Aguiar
-🔗 LinkedIn: (adicione aqui)
-🔗 GitHub: https://github.com/kaueagguiar-hub
+* Modular service architecture
+* Input validation
+* Structured logging
+* Environment configuration
+* Health check endpoint
+* API documentation
+* Cloud deployment
 
 ---
 
-## ⭐ Contribuição
+## Business Value
 
-Sinta-se à vontade para contribuir ou sugerir melhorias.
+This API simulates real-world automation flows that can be applied to:
+
+* lead triage systems
+* automated customer service routing
+* CRM integrations
+* operational analytics
+* AI-assisted workflows
+
+---
+
+## Future Improvements
+
+Planned enhancements:
+
+* Database integration (PostgreSQL)
+* Authentication layer
+* AI/NLP integration
+* Dashboard for analytics
+* CRM / WhatsApp integration
+* Queue processing
+
+---
+
+## Author
+
+**Kauê Aguiar**
+
+GitHub: https://github.com/kaueagguiar-hub
+
+LinkedIn: **(www.linkedin.com/in/
+kaue-aguiar)**
+
+---
+
+## Professional Context
+
+This project was developed to demonstrate backend engineering capabilities involving:
+
+* REST API design
+* service modularization
+* deployment workflows
+* API observability
+* intelligent automation concepts
+
+It represents a practical backend solution deployed in cloud environment and documented for external consumption.
+
+
+
